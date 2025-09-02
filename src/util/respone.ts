@@ -2,7 +2,6 @@ import axios from 'axios';
 import { userInforStore } from '../store/userInfoStore';
 //const appConfig = (window as any).APP_CONFIG || {};
 //const baseURL = appConfig.API_BASE_URL || process.env.VUE_APP_API_BASE_URL || 'http://default-api-url.com';
-const userStore = userInforStore();
 const HTTP = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API, 
   timeout: 5000, 
@@ -12,7 +11,7 @@ const HTTP = axios.create({
 HTTP.interceptors.request.use(
   (config) => {
     // 从 Vuex 中获取 token
-    let userStore=userInforStore()
+    let userStore = userInforStore();
     const token =  userStore.token;
     if (token) {
       config.headers['token'] = token;
