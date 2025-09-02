@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { userInforStore } from '../store/userInfoStore';
-
+//const appConfig = (window as any).APP_CONFIG || {};
+//const baseURL = appConfig.API_BASE_URL || process.env.VUE_APP_API_BASE_URL || 'http://default-api-url.com';
+const userStore = userInforStore();
 const HTTP = axios.create({
-  baseURL: 'http://localhost:8080', 
+  baseURL: import.meta.env.VITE_APP_BASE_API, 
   timeout: 5000, 
 });
 
@@ -40,10 +42,10 @@ HTTP.interceptors.response.use(
       console.error('Response Error:', error.response.status);
       if (error.response.status === 401) {
         alert('未授权');
-        userInforStore.commit('clearUserInfo');
+        userStore.commit('clearUserInfo');
       } else if (error.response.status === 403) {
         alert('禁止访问');
-        userInforStore.commit('clearUserInfo');
+        userStore.commit('clearUserInfo');
       }
     } else if (error.request) {
       // 请求已发出，但没有收到响应

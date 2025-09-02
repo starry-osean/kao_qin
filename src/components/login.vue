@@ -21,7 +21,7 @@
                             <input type="text" :v-model="studenID">
                         </div>
                     </form>
-                    <button class="qian_dao" @click="CheckIn">签到</button>
+                    <button class="qian_dao" @click="checkin">签到</button>
                     <button class="jiao_yan" @click="Check">校验</button>
                 </div>
                 <div class="wx"  v-show="ChangeShow== 1">
@@ -32,7 +32,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import { ref} from 'vue';
-import { checkIn,checkOut,check } from '../api/login';
+import { checkIn,check } from '../api/login';
 import type{CheckInResponse} from '../types/check'
 import CheCk from './check.vue';
 const router=useRouter();
@@ -42,7 +42,7 @@ const race = ref('');
 const time =ref('');
 const ChangeShow=ref(0);
 const qrCode = ref<string | null>(null);
-const checkIn=async()=> {
+const checkin=async()=> {
    router.push('/CheCk')
 }
 const CheckIn=async()=>{

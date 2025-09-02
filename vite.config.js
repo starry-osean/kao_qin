@@ -7,3 +7,7 @@ export default defineConfig({
 })
 
 //export const API_URL = 'http://your-backend-server.com/api';
+
+//window.APP_CONFIG={
+  //  API_BASE_URL:'http://localhost:8080'
+//}
